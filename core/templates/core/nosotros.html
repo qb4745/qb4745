@@ -1,0 +1,168 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+{% block head_title %}Jardineando - Nosotros{% endblock head_title %}
+
+{% block content %}
+
+<div id="carouselExampleInterval" class="carousel auto-slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+            <img src="{% static 'core/img/gente-trabajando.jpg' %}" class="d-block " alt="Foto de dos trabajadores plantando flores">
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+            <img src="{% static 'core/img/gente-trabajando2.jpg' %}" class="d-block" alt="Foto de dos trabajadores mirando a cámara">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'core/img/gente-trabajando3.jpg' %}" class="d-block " alt="Foto de dos trabajadores mirá    ndose">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+    </button>
+</div>
+<hr>
+<div class="contenido-jardin justify-content-center">
+    <div class="parrafo">
+        <h2 class="text-center">¿Qué es Jardineando?</h2>
+        <br>
+        <p> Jardineando es una fundación, la cual comenzó sus primeros pasos en 2016 junto al sueño de Don Jardino
+            Flores de fomentar a su familia a cuidar al medio ambiente, esto lo llevó a crear una fundación con la
+            cual
+            hoy en dia se gana la vida.</p>
+        <p> Don Jardino comenzó haciendo talleres en escuelas publicas para que los niños comenzaran a interesarse
+            por
+            el cuidado de las plantas y jardines.</p>
+        <p>Pero de repente el interes del publico fue tan grande que él solo no podia hacerse cargo de todos los
+            talleres a los que tenia que asistir. Por eso empezó a reunir gente a la que le gustara explicar y
+            hablar de
+            plantas.</p>
+    </div>
+    <div class="parrafo">
+        <h2 class="text-center">¿Sigue siendo Jardineando una fundación?</h2>
+        <p> Un dia le propusieron a Don Jardino sobre crear una empresa de jardinería y él vio la oportunidad de
+            ganar
+            dinero en base a algo que le gustaba dede su infancia, y sin pensarlo dijo que si.</p>
+        <p> Hoy en día Don Jardino es uno de los hombres mas ricos del país, e hizo su fortuna en base a ser feliz
+            vendiendo productos de jardinería.</p>
+        <p> Don Jardino siempre se preocupa de que los mejores productos lleguen lo más rápido posible a sus
+            tiendas,
+            para que así siempre estén bonitos los jardines de sus compradores</p>
+    </div>
+
+    <div class="parrafo">
+        <h2 class="text-center">¿Quienes conforman la familia Jardineando?</h2>
+        <div class="container-tabla">
+            <table class="tabla">
+                <tr>
+                    <th>Rol</th>
+                    <th>Nombre</th>
+                </tr>
+                <tr>
+                    <th>Fundador y Jefe</th>
+                    <td>Jardino Flores</td>
+                </tr>
+                <tr>
+                    <th>Jefa de ventas</th>
+                    <td>Florencia Espinoza</td>
+                </tr>
+                <tr>
+                    <th>Servicio al cliente</th>
+                    <td>Jazmín del Pino</td>
+                </tr>
+                <tr>
+                    <th>Director de Marketing</th>
+                    <td>Canela Naranjo</td>
+                </tr>
+                <tr>
+                    <th>CEO/Director Ejecutivo</th>
+                    <td>Jacinto Palma</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="parrafo text-center" id="donaciones">
+
+        <h2>¿Quieres realizar alguna donación a la fundación?<br></h2>
+
+
+
+        <form id="formulario-donacion" data-parsley-validate>
+            <p>
+                <input class="input-larga" type="text" id="nombre" name="nombre" placeholder="Nombre" required
+                    data-parsley-trigger="blur" data-parsley-error-message="Por favor, ingrese un nombre válido">
+
+            </p>
+
+            <p>
+                <input class="input-larga" type="text" id="apellido" name="apellido" placeholder="Apellido" required
+                    data-parsley-trigger="blur" data-parsley-error-message="Por favor, ingrese un apellido válido">
+            </p>
+
+            <p>
+                <input class="input-larga" type="email" id="correo" name="correo" placeholder="Correo electrónico"
+                    required data-parsley-trigger="blur"
+                    data-parsley-error-message="Por favor, ingrese un correo válido">
+            </p>
+
+            <p>
+                <input class="input-larga" type="number" id="monto" name="monto" placeholder="Monto a donar"
+                    required data-parsley-trigger="blur" min="1"
+                    data-parsley-error-message="Por favor, ingrese un monto válido">
+            </p>
+
+            <p>
+                <select id="codigo" class="input-pequenna" name="codigo" required data-parsley-trigger="blur">
+                    <option value="51">+51</option>
+                    <option value="54">+54</option>
+                    <option value="55">+55</option>
+                    <option value="56" selected>+56</option>
+                    <option value="57">+57</option>
+                    <option value="58">+58</option>
+                    <option value="591">+591</option>
+                    <option value="593">+593</option>
+                    <option value="595">+595</option>
+                    <option value="598">+598</option>
+                </select>
+
+
+                <input class="input-mediana" type="text" id="telefono" name="telefono"
+                    placeholder="Número telefónico" required data-parsley-trigger="blur"
+                    data-parsley-pattern="^[0-9]{7,}$"
+                    data-parsley-error-message="Por favor, ingrese un numero telefónico válido">
+            </p>
+
+            <p>
+                <input class="input-larga" type="text" id="rut" name="rut"
+                    placeholder="RUT (sin puntos y con guion)" required data-parsley-trigger="blur" data-parsley-rut
+                    data-parsley-error-message="Por favor, ingrese un RUT válido">
+            </p>
+
+            <button class="btn btn-primary" type="button" id="donar">Donar</button>
+        </form>
+
+
+
+
+
+
+
+
+    </div>
+</div>
+</body>
+<hr>
+<div class="separador">
+
+</div>
+<hr>
+{% endblock content %}

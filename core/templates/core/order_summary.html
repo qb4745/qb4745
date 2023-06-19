@@ -1,0 +1,72 @@
+{% extends "core/base.html" %}
+
+{% load l10n %} <!-- Load the 'l10n' template tag library -->
+{% load humanize %}
+{% load custom_filters %}
+{% block head_title %}Jardineando - Carrito{% endblock head_title %}
+
+{% block content %}
+  <!-- Main layout -->
+  <main>
+    <div class="container">
+      {{ object.pk }}
+      <div class="table-responsive text-nowrap">
+        <h2>Carrito</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre del Producto</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Precio Total por Producto</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order_item in object.items.all %}
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td><h6>{{ order_item.item.title }}</h6></td>
+              <td><h6>${{ order_item.item.price|add_thousands_separator }}</h6></td>
+              <td><h6>
+                <a href="{% url 'core:core-remove-single-item-from-cart' order_item.item.slug %}"><i class="far fa-minus-square mr-2"></i></a>
+                {{ order_item.quantity }}
+                <a href="{% url 'core:core-add-to-cart' order_item.item.slug %}"><i class="far fa-plus-square ml-2"></i></a>
+                </h6>
+              </td>
+              <td>
+                {% if order_item.item.on_sale %}
+                <h6>
+                    ${{ order_item.get_total_discount_item_price|add_thousands_separator }}
+                    <span class="badge badge-primary">Ahorras (${{ order_item.get_amount_saved|add_thousands_separator }})</span>
+                </h6>
+                {% else %}
+                <h6>${{ order_item.get_total_item_price|add_thousands_separator }}</h6>
+                {% endif %}
+                <h6><a style="color: red" href="{% url 'core:core-remove-from-cart' order_item.item.slug %}">
+                    <i class="fas fa-trash float-right"></i></a>
+                </h6>
+              </td>
+            </tr>
+
+            {% endfor %}
+            <tr>
+                <td colspan="4"><h6><b>Total de la compra:</b></h6></td>
+                <td colspan="5"><h6><b>${{ object.get_total|add_thousands_separator }}</b></h6></td>
+              </tr>
+              <tr>
+                <td colspan="5">
+                  <div class="text-right">
+                    <a href="{% url 'core:core-home' %}" class="btn btn-primary btn-md">Seguir Comprando</a>
+                    <a href="{% url 'core:core-checkout' %}" class="btn btn-warning btn-md">Ir a pagar</a>
+                  </div>
+                </td>
+              </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+{% endblock content %}

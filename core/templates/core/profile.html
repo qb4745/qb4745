@@ -1,0 +1,59 @@
+{% extends "core/base.html" %}
+{% load custom_filters %}
+
+{% block head_title %}Jardineando - Mi Cuenta{% endblock head_title %}
+
+{% block content %}
+
+<div class="site-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <h2 class="text-black">Mi Cuenta</h2>
+                <h6 class="text-muted">Aquí encontrarás tus datos personales</h6>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-content">
+                            <h5 class="card-title">Nombre de usuario: {{ request.user.username|capfirst }}</h5>
+                            <h5 class="card-title">Email: {{ request.user.email }}
+                        <hr />
+                            <a href="{% url 'account_change_password' %}" class="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark"><i class="fa-solid fa-lock fa-xl"></i><strong>Cambiar Contraseña</strong></a>
+                            <a href="{% url 'account_email' %}" class="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark"><i class="fa-solid fa-envelope fa-xl"></i><strong>Cambiar Email</strong></a>
+                            <a href="{% url 'account_logout' %}" class="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark"><i class="fa-solid fa-arrow-right-from-bracket fa-xl"></i><strong>Cerrar Sesión</strong></a>
+                        <hr />
+                        <h5 class="card-title">Sus Ordenes</h5>
+                        <div class="site-blocks-table">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Número de Orden</th>
+                                        <th>Fecha</th>
+                                        <th>Total</th>
+                                        <th>Estado de Pago</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for order in orders %}
+                                    <tr>
+                                        {% comment %} <td><a href="{% url 'cart:order-detail' order.pk %}">#{{ order.reference_number }}</a></td> {% endcomment %}
+                                        <td><a href="#">#{{ order.reference_number }}</a></td>
+                                        <td>{{ order.ordered_date }}</td>
+                                        <td>${{ order.get_total|add_thousands_separator }}</td>
+                                        <td>{% if order.ordered %}Pagada{% else %}No pagada{% endif %}</td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="4">You haven't made any orders</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
